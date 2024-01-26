@@ -43,4 +43,6 @@ def post_example():
     return jsonify(response_data)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    from waitress import serve
+    serve(app, port=8080)
+    # app.run(debug=True)
