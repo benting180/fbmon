@@ -4,6 +4,10 @@ import pandas as pd
 
 app = Flask(__name__)
 
+@app.route('/api/get_example', methods=['GET'])
+def get_example():
+    return 'Hello, this is a response from the GET endpoint!'
+
 @app.route('/api/post_example', methods=['POST'])
 def post_example():
     try:
