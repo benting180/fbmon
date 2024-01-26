@@ -12,26 +12,22 @@ def get_example():
 def post_example():
     try:
         data = request.get_json()  # Assuming the data sent is in JSON format
-
         # Do something with the received data
         received_message = data.get('message', 'No message received')
-
         rows = jsonify(received_message).json
-
         df = pd.DataFrame.from_records(rows)
-
         df_filtered = helper.filter(df)
-
         msg = helper.df2msg(df_filtered)
-
-        
 
         # You can perform any processing with the received data here
     except Exception as e:
+        print(e)
         helper.send_telegram("something is wrong")
         response_data = {
-        'status': 'fail'
-    }
+            'status': 'fail'
+        }
+        return jsonify(response_data)
+
         
     helper.send_telegram(msg)
     response_data = {
